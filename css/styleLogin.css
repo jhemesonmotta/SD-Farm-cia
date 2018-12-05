@@ -1,0 +1,41 @@
+form{
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 15%;
+}
+
+.forgot{
+  margin-bottom: 20px;
+}
+
+#ola{
+  margin: 30px 0 10px 0;
+  
+}
+
+.cardP{
+  margin: 0.5em;
+  float: left;
+  padding: 0;
+  background-image: url("https://www.trocandofraldas.com.br/wp-content/uploads/remedios-para-engravidar-ajuda-da-medicina-1.jpg");
+
+}
+
+.cards{
+  margin: 0 auto;
+  
+}
+
+#loginBG{
+  background-image: url("../img/bg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+  background-color: white;
+ 
+}
+
+.qt{
+  margin-left: 15px;
+
+}

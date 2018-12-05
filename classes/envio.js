@@ -12,4 +12,4 @@ export class Envio {
     }
   }
 
-  // é uma instância de envio q vai ser o conteúdo no blockchain
+  // ï¿½ uma instï¿½ncia de envio q vai ser o conteï¿½do no blockchain
