@@ -6,50 +6,48 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="col-md-12">
-            <h2 id="ola">Olá, listar</h2>
+        <div class="container">
+            <div class="col-md-12">
+                <h2 id="ola">Meu Estoque de Medicamentos</h2>
+            </div>
+            <hr>
+    
+            <div id="list" class="row">
+     
+                    <div class="table-responsive col-md-12">
+                        <table class="table table-striped" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Quantidade</th>
+                                    <th class="actions">Ações</th>
+                                 </tr>
+                            </thead>
+                            <tbody>
+                 
+                                <tr>
+                                    <td>1001</td>
+                                    <td>Dipirona</td>
+                                    <td>45</td>
+                                   
+                                    <td class="actions">
+                                        <a class="btn btn-success btn-xs" href="view.html">Visualizar</a>
+                                       
+                                        <a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>
+                                    </td>
+                                </tr>
+                 
+                            </tbody>
+                         </table>
+                 
+                     </div>
+                 </div> <!-- /#list -->
+    
+        <a href="/"><button type="button" class=" btn btn-secundary" >Voltar</button></a>
+    
+    
         </div>
-        <hr>
-
-        <div class="cards">
-                <div class="card text-center cardP" style="width: 18rem; ">
-                    <div class="card-body">
-                        <h5 class="card-title">Criar Remédio</h5>
-                        
-                        <a href="../criar-remedio/criar-form.html" class="btn btn-primary">Criar</a>
-                    </div>
-                </div>
-
-                <div class="card text-center cardP" style="width: 18rem; ">
-                        <div class="card-body">
-                        <h5 class="card-title">Consulta de Precedência</h5>
-                        <a href="../consultar-precedencia/consulta-precedenciaa.html" class="btn btn-primary">Consultar</a>
-                    </div>
-                </div>
-            
-                <div class="card text-center cardP" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Listar Remédios</h5>
-                        
-                        <a href="../listar-remedios/lista-remedios.html" class="btn btn-primary">Listar</a>
-                    </div>
-                </div>
-                    
-                <div class="card text-center cardP" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Enviar Remédios</h5>
-                        
-                        <a href="../enviar-remedio/form-enviar-remedio.html" class="btn btn-primary">Abrir form</a>
-                    </div>
-                </div>
-
-
-        </div>
-
-
-    </div>
-
-</body>
+    </body>
 
 </html>
