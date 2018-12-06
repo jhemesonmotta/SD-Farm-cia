@@ -23,9 +23,51 @@ app.get('/', function (request, response) {
     response.render('pages/login');
   }
   else{
-    response.render('pages/index');
+    response.render('pages/index', {usuario: usuarioLogado});
   }
-  
+});
+
+app.get('/criar-remedio', function (request, response) {
+  var usuarioLogado = store.get('userLoggedIn');
+
+  if(usuarioLogado == null){
+    response.render('pages/login');
+  }
+  else{
+    if(usuarioLogado.tipo == "Fabricante"){
+      response.render('pages/criar');
+    }
+    else{
+      response.render('pages/index', {usuario: usuarioLogado});
+   } 
+  }
+});
+
+app.get('/listar-remedios', function (request, response) {
+  var usuarioLogado = store.get('userLoggedIn');
+
+  if(usuarioLogado == null){
+    response.render('pages/login');
+  }
+  else{
+    response.render('pages/listar');
+  }
+});
+
+app.get('/precedencia', function (request, response) {
+  var usuarioLogado = store.get('userLoggedIn');
+  response.render('pages/precedencia');
+});
+
+app.get('/enviar-remedios', function (request, response) {
+  var usuarioLogado = store.get('userLoggedIn');
+
+  if(usuarioLogado == null){
+    response.render('pages/login');
+  }
+  else{
+    response.render('pages/enviar');
+  }
 });
 
 app.post('/', function (request, response) {
@@ -34,6 +76,7 @@ app.post('/', function (request, response) {
   mockController.getUserByCredentials(email, senha, function (data) {
     if(data != null && data != undefined)
     {
+      store.set("userLoggedIn", data);
       response.render('pages/index', { usuario: data });
     }
   });

@@ -6,7 +6,56 @@
 </head>
 
 <body>
-    <p>pagina inicial</p>
+    <div class="container">
+        <div class="col-md-12">
+            <h2 id="ola">Olá, <%= usuario.nome %></h2>
+        </div>
+        <hr>
+
+        <div class="cards">
+                <% if (usuario.tipo == 'Fabricante') { %>
+
+                    <div class="card text-center cardP" style="width: 18rem; ">
+                        <div class="card-body">
+                            <h5 class="card-title">Criar Remédio</h5>
+                            
+                            <a href="/criar-remedio" class="btn btn-primary">Criar</a>
+                        </div>
+                    </div>
+
+                <% } %>
+
+               
+
+                <div class="card text-center cardP" style="width: 18rem; ">
+                        <div class="card-body">
+                        <h5 class="card-title">Consulta de Precedência</h5>
+                        <a href="/precedencia" class="btn btn-primary">Consultar</a>
+                    </div>
+                </div>
+            
+                <div class="card text-center cardP" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Listar Remédios</h5>
+                        
+                        <a href="/listar-remedios" class="btn btn-primary">Listar</a>
+                    </div>
+                </div>
+                    
+                <div class="card text-center cardP" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Enviar Remédios</h5>
+                        
+                        <a href="/enviar-remedios" class="btn btn-primary">Enviar</a>
+                    </div>
+                </div>
+
+
+        </div>
+
+
+    </div>
+
 </body>
 
 </html>
