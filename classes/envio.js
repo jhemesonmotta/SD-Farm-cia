@@ -1,4 +1,4 @@
-export class Envio {
+class Envio {
     constructor(idTransacao, entidadeRemetente, entidadeDestinatario, medicamentos, quantidade, data) {
       this.idTransacao = idTransacao;
       this.entidadeRemetente = entidadeRemetente;
@@ -12,4 +12,6 @@ export class Envio {
     }
   }
 
-  // é uma instância de envio q vai ser o conteúdo no blockchain
+  module.exports = Envio;
+
+  // ï¿½ uma instï¿½ncia de envio q vai ser o conteï¿½do no blockchain

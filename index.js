@@ -29,14 +29,8 @@ app.get('/', function (request, response) {
 });
 
 app.post('/', function (request, response) {
-  console.log("aqui");
   var email = request.body.inputEmail;
-  console.log(email);
-  
   var senha = request.body.inputPassword;
-  console.log(senha);
-  console.log(mockController);
-
   mockController.getUserByCredentials(email, senha, function (data) {
     if(data != null && data != undefined)
     {

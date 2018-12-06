@@ -10,16 +10,10 @@ const Entidade = require('../classes/entidade');
     }
 
     module.exports.getUserByCredentials = function(email, senha, callback) {    
-        console.log("getUserByCredentials");
-        console.log("email:" + email);
-        console.log("senha:" + senha);
-    
         var userLoggedIn = getUsers().map(function(item) {
             if(item.email == email && item.senha == senha){
                 return item;
             }
         })[0];
-        
-        console.log(userLoggedIn);
         callback(userLoggedIn);
     }
