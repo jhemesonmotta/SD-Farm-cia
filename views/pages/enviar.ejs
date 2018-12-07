@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<!--     
+    
         <div class="container">
             <div class="col-md-12">
                 <h2 id="ola">Envie seu remédio</h2>
@@ -71,15 +71,10 @@
                 </div>
             </div>
             
-        </div> -->
+        </div>
 
-        <h1>Peer-to-Peer Cue System --- Sender</h1>
 
         <table class="control">
-            <tr>
-                <td class="title">Status:</td>
-                <td class="title">Messages:</td>
-            </tr>
             <tr>
                 <td>
                     <span style="font-weight: bold">ID: </span>
@@ -89,28 +84,11 @@
                 <td>
                     <input type="text" id="sendMessageBox" placeholder="Enter a message..." autofocus="true" />
                     <button type="button" id="sendButton">Send</button>
-                    <button type="button" id="clearMsgsButton">Clear Msgs (Local)</button>
                 </td>
             </tr>
             <tr>
                 <td><div id="status" class="status"></div></td>
                 <td><div class="message" id="message"></div></td>
-            </tr>
-            <tr>
-                <td>
-                    <button type="button" class="control-button" id="resetButton">Reset</button>
-                </td>
-                <td>
-                    <button type="button" class="control-button" id="goButton">Go</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button type="button" class="control-button" id="fadeButton">Fade</button>
-                </td>
-                <td>
-                    <button type="button" class="control-button" id="offButton">Off</button>
-                </td>
             </tr>
         </table>
 
@@ -131,13 +109,8 @@
                 var recvIdInput = document.getElementById("receiver-id");
                 var status = document.getElementById("status");
                 var message = document.getElementById("message");
-                var goButton = document.getElementById("goButton");
-                var resetButton = document.getElementById("resetButton");
-                var fadeButton = document.getElementById("fadeButton");
-                var offButton = document.getElementById("offButton");
                 var sendMessageBox = document.getElementById("sendMessageBox");
                 var sendButton = document.getElementById("sendButton");
-                var clearMsgsButton = document.getElementById("clearMsgsButton");
 
                 // get first "GET style" parameter from href
                 // would have been easier to just use location.hash
@@ -176,26 +149,6 @@
                         conn.send(command);
 
                     var cueString = "<span class=\"cueMsg\">Cue: </span>";
-                    goButton.onclick = function () {
-                        conn.send("Go");
-                        console.log("Go signal sent");
-                        addMessage(cueString + "Go");
-                    };
-                    resetButton.onclick = function () {
-                        conn.send("Reset");
-                        console.log("Reset signal sent");
-                        addMessage(cueString + "Reset");
-                    };
-                    fadeButton.onclick = function () {
-                        conn.send("Fade");
-                        console.log("Fade signal sent");
-                        addMessage(cueString + "Fade");
-                    };
-                    offButton.onclick = function () {
-                        conn.send("Off");
-                        console.log("Off signal sent");
-                        addMessage(cueString + "Off");
-                    };
 
                     // Listen for enter
                     sendMessageBox.onkeypress = function (e) {
@@ -211,10 +164,6 @@
                         conn.send(msg);
                         console.log("Sent: " + msg)
                         addMessage("<span class=\"selfMsg\">Self: </span> " + msg);
-                    };
-                    // Clear messages box
-                    clearMsgsButton.onclick = function () {
-                        clearMessages();
                     };
                 };
 
@@ -283,11 +232,6 @@
                     };
 
                     message.innerHTML = "<br><span class=\"msg-time\">" + h + ":" + m + ":" + s + "</span>  -  " + msg + message.innerHTML;
-                };
-
-                function clearMessages() {
-                    message.innerHTML = "";
-                    addMessage("Msgs cleared");
                 };
 
                 if (conn) {
