@@ -80,6 +80,7 @@
                     peer.on('open', function (id) {
                         peerId = id;
                         console.log('ID: ' + id);
+                        localStorage.setItem("meuIdDoPeer", id);
                     });
                     peer.on('error', function (err) {
                         if (err.type === 'unavailable-id') {

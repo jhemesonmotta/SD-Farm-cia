@@ -9,11 +9,15 @@ const Entidade = require('../classes/entidade');
         return usuarios;
     }
 
-    module.exports.getUserByCredentials = function(email, senha, callback) {    
-        var userLoggedIn = getUsers().map(function(item) {
+    module.exports.getUserByCredentials = function(email, senha, callback) {
+        var userLoggedIn
+        getUsers().map(function(item) {
             if(item.email == email && item.senha == senha){
-                return item;
+                userLoggedIn = item;
             }
-        })[0];
+        });
+
+        console.log(userLoggedIn)
+        
         callback(userLoggedIn);
     }

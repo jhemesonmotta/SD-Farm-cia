@@ -1,5 +1,5 @@
 (function () {
-    var destId = "n50q1axegj000000";
+    var destId = localStorage.getItem("meuIdDoPeer");
 
     var peer = null; // own peer object
     var peerId = null;

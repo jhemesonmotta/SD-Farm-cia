@@ -75,20 +75,23 @@ app.get('/inicializa-p2p', function (request, response) {
 });
 
 app.post('/', function (request, response) {
-  var email = request.body.inputEmail;
-  var senha = request.body.inputPassword;
-  mockController.getUserByCredentials(email, senha, function (data) {
-    if(data != null && data != undefined)
-    {
-      store.set("userLoggedIn", data);
-      response.render('pages/index', { usuario: data });
-    }
-  });
+  if(request.body.inputEmail != null && request.body.inputEmail != undefined){
+    var email = request.body.inputEmail;
+    var senha = request.body.inputPassword;
+    mockController.getUserByCredentials(email, senha, function (data) {
+      if(data != null && data != undefined)
+      {
+        store.set("userLoggedIn", data);
+        // console.log(data);
+        response.render('pages/index', { usuario: data });
+      }
+    });
+  }
+  else{
+    store.set('userLoggedIn', null);
+    response.render('pages/login');
+  }
 });
-
-// app.get('/enviar', function (request, response) {
-//   response.render('pages/enviar')
-// });
 
 app.listen(app.get('port'), function () {
   console.log('Node app is running on port', app.get('port'));
