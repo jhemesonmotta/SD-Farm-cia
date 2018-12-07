@@ -8,74 +8,46 @@
 <body id="body-loaded">
         <div class="container">
             <div class="col-md-12">
-                <h2 id="ola">Envie seu remÃ©dio</h2>
+                <h2 id="ola">Envie seu remédio</h2>
             </div>
             <hr>
             
-            <div class="form-group col-md-3">
-                    <label for="exampleSelect1">RemÃ©dio</label>
+            <form class="col-md-4" name="posta" id="formUrl" method="post" target="_self">
+                <div class="form-group col-md-3">
+                    <label for="exampleSelect1">Remédio</label>
                     <select class="form-control" id="exampleSelect1">
-                      <option>Dorflex</option>
-                      <option>Dipirona</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                        <option>Dorflex</option>
+                        <option>Dipirona</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
                     </select>
-            </div>
-    
-            <div class=" form-group row">
-                <div class=" qt col-3">
-                    <label for="exampleSelect1">Quantidade</label>
-                    <input class="form-control" type="number" value="0" id="example-number-input">
                 </div>
-            </div>
-    
-            <div class="form-group col-md-3">
-                    <label for="exampleSelect1">DestinatÃ¡rio</label>
+                <div class="form-group row">
+                    <div class="qt col-3">
+                        <label for="exampleSelect1">Quantidade</label>
+                        <input class="form-control" type="number" value="0" id="example-number-input">
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleSelect1">Destinatário</label>
                     <select class="form-control" id="exampleSelect1">
-                      <option>Algum</option>
-                      <option>Dest 2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                        <option>Algum</option>
+                        <option>Dest 2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
                     </select>
-            </div>
-            
-            <a href="../home/home.html"><button type="button" class=" qt btn btn-secundary" >Voltar</button></a>
-    
-            <button type="button" class=" btn btn-success" data-toggle="modal" data-target="#modalExemplo">
-            Enviar remÃ©dio
-            </button>
-            
-            <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">AtenÃ§Ã£o!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                    Por motivos de seguranÃ§a as informaÃ§Ãµes adicionadas atÃ© agora sobre o remÃ©dio novo nÃ£o poderÃ£o ser editadas
-                    nem removidas posteriormente.
-                    <br>
-                    VocÃª aceita essas condiÃ§Ãµes?
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">NÃ£o, fechar</button>
-                    <button type="button" class="btn btn-success">Sim, estou ciente</button>
-                    </div>
                 </div>
-                </div>
-            </div>
-            
+                <a href="/"><button type="button" class=" qt btn btn-secundary" >Voltar</button></a>
+                <button type="submit" class="btn btn-success">
+                    Enviar remédio
+                </button>
+            </form>            
         </div>
 
         <% include ../partials/p2pAction.ejs %>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
 </html>

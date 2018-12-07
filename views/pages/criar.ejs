@@ -11,46 +11,44 @@
                 <h2 id="ola">Crie seu remédio</h2>
             </div>
             <hr>
-    
-            <div class="form-group row">
-                <div class="col-3">
-                    <label for="example-text-input" class="col-2 col-form-label">Nome</label>
-                    <input class=" qt form-control" type="text" id="example-text-input">
+            <form class="col-md-12" name="posta" id="formUrl" method="post" target="_self">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label for="nome" class="col-2 col-form-label">Nome</label>
+                        <input class="qt form-control" type="text" id="nome" name="nome" required>
+                    </div>
                 </div>
-            </div>
-    
-            <div class="form-group col-md-3">
-                    <label for="exampleSelect1">Origem</label>
-                    <select class="form-control" id="exampleSelect1">
-                      <option>Natural</option>
-                      <option>Vegetal</option>
-                      <option>Animal</option>
-                      <option>Mineral</option>
-                      <option>Sintético</option>
+                <div class="form-group col-md-3">
+                    <label for="origem">Origem</label>
+                    <select class="form-control" id="origem" name="origem" required>
+                        <option value="">Selecione ...</option>
+                        <option value="Natural">Natural</option>
+                        <option value="Vegetal">Vegetal</option>
+                        <option value="Animal">Animal</option>
+                        <option value="Mineral">Mineral</option>
+                        <option value="Sintética">Sintética</option>
                     </select>
-            </div>
-    
-            <div class="form-group col-md-3">
-                    <label for="exampleSelect1">Local da ação</label>
-                    <select class="form-control" id="exampleSelect1">
-                      <option>Local</option>
-                      <option>Sistêmica</option>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="local">Local da Ação</label>
+                    <select class="form-control" id="local" name="local" required>
+                        <option value="">Selecione ...</option>
+                        <option value="Local">Local</option>
+                        <option value="Sistêmica">Sistêmica</option>
                     </select>
-            </div>
-    
-            <div class="form-group col-md-3">
-                    <label for="exampleSelect1">Via administração</label>
-                    <select class="form-control" id="exampleSelect1">
-                      <option>Parental</option>
-                      <option>Enteral</option>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="via">Via de Administração</label>
+                    <select class="form-control" id="via" name="via" required>
+                        <option value="">Selecione ...</option>
+                        <option value="Parental">Parental</option>
+                        <option value="Enteral">Enteral</option>
                     </select>
-            </div>
-    
-    
-            <a href="../home/home.html"><button type="button" class=" qt btn btn-secundary" >Voltar</button></a>
-    
-            <button type="button" class=" btn btn-success">Criar remédio</button>
-    
+                </div>
+
+                <a href="/"><button type="button" class="qt btn btn-secundary">Voltar</button></a>
+                <button type="submit" class="btn btn-success">Criar remédio</button>
+            </form>
         </div>
 
         <% include ../partials/p2pAction.ejs %>

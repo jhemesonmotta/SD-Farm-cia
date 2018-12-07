@@ -1,5 +1,5 @@
 class Medicamento {
-    constructor(id, nome, origem, localAcao, viaAdministracao) {
+    constructor(id, nome, origem, localAcao, viaAdministracao, dono) {
       this.id = id;
       this.nome = nome;
       this.origem = origem;
@@ -8,7 +8,7 @@ class Medicamento {
         // local ou sist�mica
       this.viaAdministracao = viaAdministracao;
         // Parental ou Enteral 
-        
+      this.dono = dono;
       // ------------------------------------------------------------------------------------------------------------------------------
         // o motivo de colocar mais informa��es que o sistema diretamente precisa �: 
           // como tinhamos falado, os mineradores receber�o informa��es ent�o quanto mais informa��es �teis tivermos, mais chances de termos gente querendo as informa��es
