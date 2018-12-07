@@ -87,7 +87,6 @@ app.post('/criar-remedio', function (request, response) {
 
         // onload dessa página terá um método q enviará a lista de remédios para os pontos conhecidos
         // todos os pontos, ao receberem a lista, atualizam a sua
-        
         response.render('pages/listar', { listaRemedios: data });
       }
     });
@@ -102,7 +101,8 @@ app.get('/listar-remedios', function (request, response) {
     response.render('pages/login');
   }
   else{
-    response.render('pages/listar');
+    remedios = store.get('listaRemedios');
+    response.render('pages/listar', { listaRemedios: remedios });
   }
 });
 // fim rotas de listar remédios
