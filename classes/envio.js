@@ -1,17 +1,15 @@
 class Envio {
-    constructor(idTransacao, entidadeRemetente, entidadeDestinatario, medicamentos, quantidade, data) {
-      this.idTransacao = idTransacao;
+    constructor(entidadeRemetente, entidadeDestinatario, medicamento, data) {
       this.entidadeRemetente = entidadeRemetente;
         // inferido pela entidade logada
       this.entidadeDestinatario = entidadeDestinatario;
         // drop com entidades cadastradas
-      this.medicamentos = medicamentos;
-        // medicamentos setados para o envio
+      this.medicamento = medicamento;
+        // medicamento setado para o envio
       this.data = data;
         // inferido dinamicamente
     }
   }
 
   module.exports = Envio;
-
   // � uma inst�ncia de envio q vai ser o conte�do no blockchain

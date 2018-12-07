@@ -54,20 +54,9 @@
                         <a href="/enviar-remedios" class="btn btn-primary">Enviar</a>
                     </div>
                 </div>
-
-
         </div>
-
-
     </div>
-
-    <p style="display: none" id="nomeUserLogado">
-        <%= usuario.nome %>
-    </p>
     <% include ../partials/p2pAction.ejs %>
-    <script>
-        localStorage.setItem("nomeUserLogado", $('#nomeUserLogado').text());
-    </script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 var express = require('express');
 var request = require("request");
 var mockController = require('./controllers');
+var blockchainController = require('./Blockchain');
 var bodyParser = require('body-parser');
 var store = require('store');
 var app = express();
@@ -51,7 +52,7 @@ app.post('/', function (request, response) {
 });
 // fim rotas de base
 
-// rotas de criar de remédio
+// rotas de criar de remï¿½dio
 app.get('/criar-remedio', function (request, response) {
   var usuarioLogado = store.get('userLoggedIn');
 
@@ -74,26 +75,21 @@ app.post('/criar-remedio', function (request, response) {
     var local = request.body.local;
     var via = request.body.via;
 
-    console.log(nome);
-    console.log(origem);
-    console.log(local);
-    console.log(via);
-
     mockController.criarRemedio(nome, origem, local, via, function (data) {
       if(data != null && data != undefined)
       {
         store.set("listaRemedios", data);
         console.log(data);
 
-        // onload dessa página terá um método q enviará a lista de remédios para os pontos conhecidos
+        // onload dessa pï¿½gina terï¿½ um mï¿½todo q enviarï¿½ a lista de remï¿½dios para os pontos conhecidos
         // todos os pontos, ao receberem a lista, atualizam a sua
         response.render('pages/listar', { listaRemedios: data });
       }
     });
 });
-// fim rotas de criar de remédio
+// fim rotas de criar de remï¿½dio
 
-// rotas de listar remédios
+// rotas de listar remï¿½dios
 app.get('/listar-remedios', function (request, response) {
   var usuarioLogado = store.get('userLoggedIn');
 
@@ -105,7 +101,7 @@ app.get('/listar-remedios', function (request, response) {
     response.render('pages/listar', { listaRemedios: remedios });
   }
 });
-// fim rotas de listar remédios
+// fim rotas de listar remï¿½dios
 
 // rotas de precedencia
 app.get('/precedencia', function (request, response) {
@@ -127,11 +123,11 @@ app.get('/enviar-remedios', function (request, response) {
 });
 // fim rotas de enviar remedios
 
-// rota de inicializar conexão p2p
+// rota de inicializar conexï¿½o p2p
 app.get('/inicializa-p2p', function (request, response) {
     response.render('pages/forneceid');
 });
-// fim rota de inicializar conexão p2p
+// fim rota de inicializar conexï¿½o p2p
 
 app.listen(app.get('port'), function () {
   console.log('Node app is running on port', app.get('port'));
@@ -142,3 +138,4 @@ app.listen(app.get('port'), function () {
 // npm install
 // npm i peer
 // npm install object-hash
+// npm install crypto-js
