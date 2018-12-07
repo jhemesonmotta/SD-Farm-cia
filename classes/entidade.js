@@ -7,6 +7,7 @@ class Entidade {
       this.telefone = telefone;
       this.email = email;
       this.senha = senha;
+      this.peer = null; // setado toda vez q ele fizer login
     }
   }
 
