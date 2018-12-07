@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <% include ../partials/head.ejs %>
+</head>
+
+<body>
+        <table class="display">
+            <tr>
+                <td class="title">Status:</td>
+                <td class="title">Messages:</td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="receiver-id" style="font-weight: bold;" title="Copy this ID to the input on send.html.">ID:</div>
+                </td>
+                <td>
+                    <input type="text" id="sendMessageBox" placeholder="Enter a message..." autofocus="true" />
+                    <button type="button" id="sendButton">Send</button>
+                </td>
+            </tr>
+            <tr>
+                <td><div id="status" class="status"></div></td>
+                <td><div class="message" id="message"></div></td>
+            </tr>
+        </table>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.18/peer.min.js"></script>
+        <script type="text/javascript">
+            (function () {
+
+                var peer = null; // Own peer object
+                var peerId = null;
+                var conn = null;
+                var oppositePeer = { // Opposite peer object
+                    peerId: null
+                };
+
+                var msg = null;
+                var recvId = document.getElementById("receiver-id");
+                var status = document.getElementById("status");
+                var message = document.getElementById("message");
+                var sendMessageBox = document.getElementById("sendMessageBox");
+                var sendButton = document.getElementById("sendButton");
+
+                function ready() {
+                    conn.on('data', function (data) {
+                        addMessage("<span class=\"peerMsg\">Peer: </span>" + data);
+                    });
+                    conn.on('close', function () {
+                        status.innerHTML = "Connection reset<br>Awaiting connection...";
+                        conn = null;
+                        start(true);
+                    });
+                    peer.on('disconnected', function () {
+                        alert("Connection has been lost.");
+                        peer.reconnect();
+                    });
+                    peer.on('error', function (err) {
+                        alert('' + err)
+                    });
+
+                    // Send message
+                    sendButton.onclick = function () {
+                        msg = sendMessageBox.value;
+                        sendMessageBox.value = "";
+                        conn.send(msg);
+                        console.log("Sent: " + msg)
+                        addMessage("<span class=\"selfMsg\">Self: </span>" + msg);
+                    };
+                }
+
+                function initialize() {
+                    // Create own peer object with connection to shared PeerJS server
+                    peer = new Peer(null, {
+                        debug: 2
+                    });
+
+                    peer.on('open', function (id) {
+                        peerId = id;
+                        console.log('ID: ' + id);
+                    });
+                    peer.on('error', function (err) {
+                        if (err.type === 'unavailable-id') {
+                            alert('' + err);
+                            peer.reconnect();
+                        }
+                        else
+                            alert('' + err);
+                    });
+                };
+
+                function start(noInitialize) {
+                    if (noInitialize)
+                        reset();
+                    else
+                        initialize();
+
+                    peer.on('open', function () {
+                        recvId.innerHTML = "ID: " + peer.id;
+                        status.innerHTML = "Awaiting connection...";
+                    });
+                    peer.on('connection', function (c) {
+                        if (conn) {
+                            c.send("Already connected...");
+                            c.close();
+                            return
+                        }
+                        conn = c;
+                        console.log("Connected.");
+                        status.innerHTML = "Connected";
+                        ready()
+                    });
+                }
+
+                function addMessage(msg) {
+                    var now = new Date();
+                    var h = now.getHours();
+                    var m = addZero(now.getMinutes());
+                    var s = addZero(now.getSeconds());
+
+                    if (h > 12)
+                        h -= 12;
+                    else if (h === 0)
+                        h = 12;
+
+                    function addZero(t) {
+                        if (t < 10)
+                            t = "0" + t;
+                        return t;
+                    };
+
+                    message.innerHTML = "<br><span class=\"msg-time\">" + h + ":" + m + ":" + s + "</span>  -  " + msg + message.innerHTML;
+                }
+
+                if (conn) {
+                    ready()
+                }
+                else {
+                    start()
+                }
+            })();
+        </script>
+    </body>
+
+</html>

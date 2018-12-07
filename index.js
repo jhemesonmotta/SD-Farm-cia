@@ -70,6 +70,10 @@ app.get('/enviar-remedios', function (request, response) {
   }
 });
 
+app.get('/inicializa-p2p', function (request, response) {
+    response.render('pages/forneceid');
+});
+
 app.post('/', function (request, response) {
   var email = request.body.inputEmail;
   var senha = request.body.inputPassword;
