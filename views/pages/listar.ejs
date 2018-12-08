@@ -25,7 +25,7 @@
                                 <th>Dono</th>
                         </thead>
                         <tbody>
-                            <% listaRemedios.forEach(function(remedio) { %>
+                            <% retorno.listaRemedios.forEach(function(remedio) { %>
                                     <tr>
                                         <td><%= remedio.id %></td>
                                         <td><%= remedio.nome %></td>
@@ -37,8 +37,31 @@
                         </tbody>
                     </table>
                 
+                    <% retorno.blockchain.blocks.forEach(function(block) { %>
+                        <tr>
+                            <td><%= block.index %></td>
+                            <td><%= block.previousHash %></td>
+                            <td><%= block.data %></td>
+                            <td><%= block.timestamp %></td>
+                        </tr>
+                    <% }); %>
+
                 </div>
             </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+            <p id="dataReturned">
+                <%= retorno.toString %>
+            </p>
+<br>
+<br>
+<br>
     
             <a href="/"><button type="button" class=" btn btn-secundary" >Voltar</button></a>
         </div>

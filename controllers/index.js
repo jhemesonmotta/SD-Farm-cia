@@ -46,7 +46,10 @@ function getUsers(){
             remedios = remedios.push(remedio);
         }
 
-        callback(remedios);
+        callback({
+            remedios : remedios,
+            remedio: remedio
+        });
     }
 
     module.exports.getUserList = function(callback) {

@@ -2,6 +2,7 @@ var express = require('express');
 var request = require("request");
 var mockController = require('./controllers');
 var blockchainController = require('./Blockchain');
+const Envio = require('./classes/envio');
 var bodyParser = require('body-parser');
 var store = require('store');
 var app = express();
@@ -74,16 +75,42 @@ app.post('/criar-remedio', function (request, response) {
     var origem = request.body.origem;
     var local = request.body.local;
     var via = request.body.via;
+    var blockchainRetornado;
 
     mockController.criarRemedio(nome, origem, local, via, function (data) {
       if(data != null && data != undefined)
       {
-        store.set("listaRemedios", data);
-        console.log(data);
+        store.set("listaRemedios", data.remedios);
+
+        var itemEnviado = new Envio(null, store.get('userLoggedIn'), data.remedio, Date.now());
+        
+          blockchainController.addBlock(itemEnviado, function(data){
+            if(data != null && data != undefined){
+              if(data.success){
+                blockchainRetornado = data.blockchain;
+                store.set("blockchainAtual", blockchainRetornado);
+              }
+            }
+          });
 
         // onload dessa p�gina ter� um m�todo q enviar� a lista de rem�dios para os pontos conhecidos
+        // onlead dessa página terá um método q enviará o blockchain para os pontos conhecidos
         // todos os pontos, ao receberem a lista, atualizam a sua
-        response.render('pages/listar', { listaRemedios: data });
+
+
+        var returnObj = { retorno:{ 
+                                listaRemedios       :     data.remedios,
+                                blockchain          :     blockchainRetornado,
+                                toString            :     JSON.stringify(
+                                  {
+                                    listaRemedios       :     data.remedios,
+                                    blockchain          :     blockchainRetornado
+                                  })
+                                }};
+
+
+
+        response.render('pages/listar', returnObj);
       }
     });
 });
@@ -98,7 +125,7 @@ app.get('/listar-remedios', function (request, response) {
   }
   else{
     remedios = store.get('listaRemedios');
-    response.render('pages/listar', { listaRemedios: remedios });
+    response.render('pages/listar', { retorno: {listaRemedios: remedios, blockchain: store.get("blockchainAtual")}});
   }
 });
 // fim rotas de listar rem�dios
