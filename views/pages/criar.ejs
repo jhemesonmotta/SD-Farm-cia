@@ -12,6 +12,7 @@
             </div>
             <hr>
             <form class="col-md-12" name="posta" id="formUrl" method="post" target="_self">
+                <input type="hidden" style="display: none;" id="currentSharedData" name="currentSharedData">
                 <div class="form-group row">
                     <div class="col-3">
                         <label for="nome" class="col-2 col-form-label">Nome</label>
@@ -50,6 +51,13 @@
                 <button type="submit" class="btn btn-success">Criar remédio</button>
             </form>
         </div>
+
+        <script>
+            // lá no tratamento do post transforma em json
+            // executa os métodos para atualizar o blockchain e lista de remédios
+            var currentSharedData = localStorage.getItem("currentSharedData");
+            $("#currentSharedData").val(currentSharedData);
+        </script>
 
         <% include ../partials/p2pAction.ejs %>
     </body>

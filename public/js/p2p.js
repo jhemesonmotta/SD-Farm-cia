@@ -12,8 +12,6 @@
     var command = null;
     var status = document.getElementById("status");
     var message = document.getElementById("message");
-    var sendMessageBox = document.getElementById("sendMessageBox");
-    var sendButton = document.getElementById("sendButton");
 
     // get first "GET style" parameter from href
     // would have been easier to just use location.hash
@@ -31,7 +29,10 @@
     function ready() {
         // Receive data (only messages)
         conn.on('data', function (data) {
-            addMessage("<span class=\"peerMsg\">Peer enviou:</span> " + data);
+            localStorage.setItem("currentSharedData", data);
+            console.log("\n\n");
+            console.log(data);
+            console.log("\n\n");
         });
 
         // Handle close or error
@@ -50,15 +51,6 @@
         command = getUrlParam("command");
         if (command)
             conn.send(command);
-
-        // Send message
-        sendButton.onclick = function () {
-            msg = sendMessageBox.value;
-            sendMessageBox.value = "";
-            conn.send(msg);
-            console.log("Sent: " + msg)
-            addMessage("<span class=\"selfMsg\">Self: </span> " + msg);
-        };
     };
 
     function initialize() {
@@ -104,26 +96,6 @@
                 ready();
             });
         });
-    };
-
-    function addMessage(msg) {
-        var now = new Date();
-        var h = now.getHours();
-        var m = addZero(now.getMinutes());
-        var s = addZero(now.getSeconds());
-
-        if (h > 12)
-            h -= 12;
-        else if (h === 0)
-            h = 12;
-
-        function addZero(t) {
-            if (t < 10)
-                t = "0" + t;
-            return t;
-        };
-
-        message.innerHTML = "<br><span class=\"msg-time\">" + h + ":" + m + ":" + s + "</span>  -  " + msg + message.innerHTML;
     };
 
     if (conn) {

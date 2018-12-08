@@ -71,10 +71,34 @@ app.get('/criar-remedio', function (request, response) {
 });
 
 app.post('/criar-remedio', function (request, response) {
+  console.log("criar-remedio");
     var nome = request.body.nome;
     var origem = request.body.origem;
     var local = request.body.local;
     var via = request.body.via;
+    var currentSharedDataAsString = request.body.currentSharedData;
+    var currentSharedDataAsJson = null;
+    
+    if(currentSharedDataAsString != null && currentSharedDataAsString != undefined && currentSharedDataAsString != ""){
+      console.log("currentSharedDataAsString não é vazio");
+      console.log("currentSharedDataAsString não é vazio");
+      console.log("currentSharedDataAsString não é vazio");
+      console.log("currentSharedDataAsString não é vazio");
+      console.log("currentSharedDataAsString não é vazio");
+      currentSharedDataAsJson = JSON.parse(currentSharedDataAsString);
+      console.log("currentSharedDataAsJson");
+      console.log(currentSharedDataAsJson);
+
+      if(currentSharedDataAsJson.listaRemedios != null && currentSharedDataAsJson.listaRemedios != undefined && currentSharedDataAsJson.listaRemedios != []){
+        console.log("currentSharedDataAsJson.listaRemedios não é vazio");
+        console.log(currentSharedDataAsJson.listaRemedios);
+        store.set("listaRemedios", currentSharedDataAsJson.listaRemedios);
+      }
+      else{
+        console.log("currentSharedDataAsJson.listaRemedios é vazio");
+      }
+    }
+
     var blockchainRetornado;
 
     mockController.criarRemedio(nome, origem, local, via, function (data) {
@@ -84,6 +108,14 @@ app.post('/criar-remedio', function (request, response) {
 
         var itemEnviado = new Envio(null, store.get('userLoggedIn'), data.remedio, Date.now());
         
+        if(currentSharedDataAsJson != null){
+          // sincronizar blocos antes de add
+          
+          if(currentSharedDataAsJson.blockchain != null && currentSharedDataAsJson.blockchain != undefined && currentSharedDataAsJson.blockchain != []){
+            blockchainController.igualaBlockchain(currentSharedDataAsJson.blockchain, function(data){});
+          }
+        }
+        
           blockchainController.addBlock(itemEnviado, function(data){
             if(data != null && data != undefined){
               if(data.success){
@@ -92,11 +124,6 @@ app.post('/criar-remedio', function (request, response) {
               }
             }
           });
-
-        // onload dessa p�gina ter� um m�todo q enviar� a lista de rem�dios para os pontos conhecidos
-        // onlead dessa página terá um método q enviará o blockchain para os pontos conhecidos
-        // todos os pontos, ao receberem a lista, atualizam a sua
-
 
         var returnObj = { retorno:{ 
                                 listaRemedios       :     data.remedios,
@@ -110,6 +137,29 @@ app.post('/criar-remedio', function (request, response) {
 
 
 
+        console.log("\n");
+        console.log("\n");
+        console.log(returnObj);
+        console.log("\n");
+        console.log("\n");
+        console.log("\n");
+        console.log(returnObj.retorno);
+        console.log("\n");
+        console.log("\n");
+        console.log("\n");
+        console.log(returnObj.retorno.listaRemedios);
+        console.log("\n");
+        console.log("\n");
+        console.log("\n");
+        console.log(returnObj.retorno.blockchain);
+        console.log("\n");
+        console.log("\n");
+        console.log("\n");
+        console.log(returnObj.retorno.toString);
+        console.log("\n");
+        console.log("\n");
+        console.log("\n");
+        
         response.render('pages/listar', returnObj);
       }
     });
@@ -177,3 +227,10 @@ app.listen(app.get('port'), function () {
 // npm i peer
 // npm install object-hash
 // npm install crypto-js
+
+
+
+
+
+
+// Self: {"listaRemedios":[{"id":"a2878de1ccadd3153794ed98e75b1976c15bb812","nome":"asdasd","origem":"Vegetal","localAcao":"Local","viaAdministracao":"Parental","dono":{"id":1,"nome":"Jhemeson","tipo":"Fabricante","endereco":"1503 S, Palmas-TO","telefone":"+55 63 98100-0000","email":"jhemesonmotta@gmail.com","senha":"12345678","peer":null}}],"blockchain":{"blocks":[{"index":0,"previousHash":null,"data":"Genesis block","timestamp":"2018-12-08T01:28:37.769Z","difficulty":1,"nonce":60,"hash":"0784e6c39534f0bde2c1f521ff5fa07f844fc0bfaa6064a8e4e6f71f53bb476d"},{"index":1,"previousHash":"0784e6c39534f0bde2c1f521ff5fa07f844fc0bfaa6064a8e4e6f71f53bb476d","data":{"entidadeRemetente":null,"entidadeDestinatario":{"id":1,"nome":"Jhemeson","tipo":"Fabricante","endereco":"1503 S, Palmas-TO","telefone":"+55 63 98100-0000","email":"jhemesonmotta@gmail.com","senha":"12345678","peer":null},"medicamento":{"id":"a2878de1ccadd3153794ed98e75b1976c15bb812","nome":"asdasd","origem":"Vegetal","localAcao":"Local","viaAdministracao":"Parental","dono":{"id":1,"nome":"Jhemeson","tipo":"Fabricante","endereco":"1503 S, Palmas-TO","telefone":"+55 63 98100-0000","email":"jhemesonmotta@gmail.com","senha":"12345678","peer":null}},"data":1544233813950},"timestamp":"2018-12-08T01:50:13.950Z","difficulty":1,"nonce":7,"hash":"0f54d583fc4dd3f5dec17e2b36e790141cc20474d41a615bb2abe214b17e3cb9"}],"index":2,"difficulty":1}}

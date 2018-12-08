@@ -46,7 +46,10 @@
 
                 function ready() {
                     conn.on('data', function (data) {
-                        addMessage("<span class=\"peerMsg\">Peer: </span>" + data);
+                        localStorage.setItem("currentSharedData", data);
+                        console.log("\n\n");
+                        console.log(data);
+                        console.log("\n\n");
                     });
                     conn.on('close', function () {
                         status.innerHTML = "Connection reset<br>Awaiting connection...";
@@ -94,7 +97,7 @@
 
                 function start(noInitialize) {
                     if (noInitialize)
-                        reset();
+                        location.reload();
                     else
                         initialize();
 
@@ -146,3 +149,5 @@
     </body>
 
 </html>
+
+

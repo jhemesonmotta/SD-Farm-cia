@@ -89,8 +89,10 @@
                 function ready() {
                     // Receive data (only messages)
                     conn.on('data', function (data) {
-                        console.log("recebi dados");
+                        localStorage.setItem("currentSharedData", data);
+                        console.log("\n\n");
                         console.log(data);
+                        console.log("\n\n");
                     });
 
                     // Handle close or error

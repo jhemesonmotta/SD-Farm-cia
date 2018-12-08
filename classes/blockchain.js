@@ -8,6 +8,12 @@ class Blockchain {
         this.difficulty = difficulty
     }
 
+    setAllInfo(blocks, index, difficulty){
+        this.blocks = blocks
+        this.index = index
+        this.difficulty = difficulty
+    }
+
     /**
          * função para pegar o último block da cadeia 
      */
