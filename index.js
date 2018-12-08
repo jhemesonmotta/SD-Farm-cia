@@ -125,7 +125,18 @@ app.get('/listar-remedios', function (request, response) {
   }
   else{
     remedios = store.get('listaRemedios');
-    response.render('pages/listar', { retorno: {listaRemedios: remedios, blockchain: store.get("blockchainAtual")}});
+
+    var returnObj = { retorno:{ 
+                              listaRemedios       :     remedios,
+                              blockchain          :     store.get("blockchainAtual"),
+                              toString            :     JSON.stringify(
+                                {
+                                  listaRemedios       :     remedios,
+                                  blockchain          :     store.get("blockchainAtual")
+                                })
+                              }};
+
+    response.render('pages/listar', returnObj);
   }
 });
 // fim rotas de listar rem�dios

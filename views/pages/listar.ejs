@@ -48,24 +48,19 @@
 
                 </div>
             </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-            <p id="dataReturned">
+
+            <p id="dataReturned" style="display: none;">
                 <%= retorno.toString %>
             </p>
-<br>
-<br>
-<br>
     
             <a href="/"><button type="button" class=" btn btn-secundary" >Voltar</button></a>
         </div>
 
+        <script>
+            console.log("retorno");
+            var retorno = $("#dataReturned").text();
+            console.log(retorno);
+        </script>
         <% include ../partials/p2pAction.ejs %>
     </body>
 </html>
