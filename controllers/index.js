@@ -31,6 +31,29 @@ function getUsers(){
         callback(userLoggedIn);
     }
 
+    module.exports.getUserById = function(id, callback) {
+        getUsers().map(function(item) {
+            if(item.id == id){
+                userLoggedIn = item;
+            }
+        });
+
+        callback(userLoggedIn);
+    }
+
+    module.exports.getRemedioById = function(id, callback) {
+        var remedios = store.get('listaRemedios');
+        var remedio;
+
+        for(i = 0; i < remedios.length; i++){
+            if(remedios[i].id == id){
+                remedio = remedios[i];
+            }
+        }
+
+        callback(remedio);
+    }
+
     module.exports.criarRemedio = function(nome, origem, local, via, callback) {
         userLoggedIn = store.get('userLoggedIn');
         remediosAux = store.get("listaRemedios");

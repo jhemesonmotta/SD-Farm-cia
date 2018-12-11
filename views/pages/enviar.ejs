@@ -14,36 +14,24 @@
             
             <form class="col-md-4" name="posta" id="formUrl" method="post" target="_self">
                 <input type="hidden" style="display: none;" id="currentSharedData">
-                <div class="form-group col-md-3">
-                    <label for="exampleSelect1">Remédio</label>
-                    <select class="form-control" id="exampleSelect1">
-                        <option>Dorflex</option>
-                        <option>Dipirona</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                <div class="form-group col-md-12">
+                    <label for="remedio">Remédio</label>
+                    <select class="form-control" id="remedio" name="remedio" required>
+                        <% meusRemedios.forEach(function(remedio) { %>
+                            <option value="<%= remedio.id %>"><%= remedio.nome %></option>
+                        <% }); %>
                     </select>
                 </div>
-                <div class="form-group row">
-                    <div class="qt col-3">
-                        <label for="exampleSelect1">Quantidade</label>
-                        <input class="form-control" type="number" value="0" id="example-number-input">
-                    </div>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="exampleSelect1">Destinatário</label>
-                    <select class="form-control" id="exampleSelect1">
-                        <option>Algum</option>
-                        <option>Dest 2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                <div class="form-group col-md-12">
+                    <label for="destinatario">Destinatário</label>
+                    <select class="form-control" id="destinatario" name="destinatario" required>
+                        <% usuariosExistentes.forEach(function(usuario) { %>
+                            <option value="<%= usuario.id %>"><%= usuario.nome %></option>
+                        <% }); %>
                     </select>
                 </div>
-                <a href="/"><button type="button" class=" qt btn btn-secundary" >Voltar</button></a>
-                <button type="submit" class="btn btn-success">
-                    Enviar remédio
-                </button>
+                <a href="/"><button type="button" class="qt btn btn-secundary">Voltar</button></a>
+                <button type="submit" class="btn btn-success">Enviar remédio</button>
             </form>            
         </div>
 
