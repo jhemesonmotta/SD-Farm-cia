@@ -6,9 +6,6 @@ const Envio = require('./classes/envio');
 var bodyParser = require('body-parser');
 var store = require('store');
 
-var PeerServer = require('peer').PeerServer;
-var server = PeerServer({port: 9000, path: '/myPeerServer'});
-
 var app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));

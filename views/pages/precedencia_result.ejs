@@ -21,7 +21,9 @@
                     <thead>
                         <tr>
                             <th>Remetente</th>
+                            <th>Endereço</th>
                             <th>Destinatário</th>
+                            <th>Endereço</th>
                             <th>Medicamento</th>
                             <th>Data</th>
                     </thead>
@@ -31,13 +33,20 @@
                                     <% if (itemCaminho.entidadeRemetente == null || itemCaminho.entidadeRemetente == undefined) { %>
                                         <td>Criou Remédio</td>
                                     <% } else{ %>
-                                        <td><%= itemCaminho.entidadeRemetente.nome %></td>
+                                        <td><%= itemCaminho.entidadeRemetente.nome %> - <%= itemCaminho.entidadeRemetente.tipo %></td>
+                                    <% } %>
+
+                                    <% if (itemCaminho.entidadeRemetente == null || itemCaminho.entidadeRemetente == undefined) { %>
+                                        <td>Criou Remédio</td>
+                                    <% } else{ %>
+                                        <td><%= itemCaminho.entidadeRemetente.endereco %></td>
                                     <% } %>
 
                                     <% if (itemCaminho.entidadeDestinatario == null || itemCaminho.entidadeDestinatario == undefined) { %>
                                         <td>TÁ ERRADO</td>
                                     <% } else{ %>
-                                        <td><%= itemCaminho.entidadeDestinatario.nome %></td>
+                                        <td><%= itemCaminho.entidadeDestinatario.nome %> - <%= itemCaminho.entidadeDestinatario.tipo %></td>
+                                        <td><%= itemCaminho.entidadeDestinatario.endereco %></td>
                                     <% } %>
                                     
                                     <td><%= itemCaminho.medicamento.nome %></td>
