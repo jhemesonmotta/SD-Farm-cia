@@ -166,6 +166,50 @@ app.get('/precedencia', function (request, response) {
   var usuarioLogado = store.get('userLoggedIn');
   response.render('pages/precedencia');
 });
+
+app.post('/precedencia', function (request, response) {
+  console.log("precedencia");
+
+    var idRemedio = request.body.idRemedio;
+    var usuarioLogado = store.get('userLoggedIn');
+    var caminhoMedicamento;
+
+    var currentSharedDataAsString = request.body.currentSharedData;
+    var currentSharedDataAsJson = null;
+    
+    if(currentSharedDataAsString != null && currentSharedDataAsString != undefined && currentSharedDataAsString != ""){
+      currentSharedDataAsJson = JSON.parse(currentSharedDataAsString);
+
+      if(currentSharedDataAsJson.listaRemedios != null && currentSharedDataAsJson.listaRemedios != undefined && currentSharedDataAsJson.listaRemedios != []){
+        store.set("listaRemedios", currentSharedDataAsJson.listaRemedios);
+      }
+    }
+
+    if(currentSharedDataAsJson != null){
+      // sincronizar blocos antes de add
+      if(currentSharedDataAsJson.blockchain != null && currentSharedDataAsJson.blockchain != undefined && currentSharedDataAsJson.blockchain != []){
+        blockchainController.igualaBlockchain(currentSharedDataAsJson.blockchain, function(data){});
+      }
+    }
+
+    blockchainController.getCaminhoMedicamento(idRemedio, function(data){
+      if(data != null && data != undefined){
+        caminhoMedicamento = data;
+      }
+    });
+    
+    console.log("\n");
+    console.log("\n");
+    console.log("\n");
+    console.log(caminhoMedicamento);
+    console.log("\n");
+    console.log("\n");
+    console.log("\n");
+
+    var returnObj = { caminhoMedicamento : caminhoMedicamento };
+
+    response.render('pages/precedencia_result', returnObj);
+});
 // fim rotas de precedencia
 
 // rotas de enviar remedios

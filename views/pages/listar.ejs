@@ -36,16 +36,6 @@
                             <% }); %>
                         </tbody>
                     </table>
-                
-                    <% retorno.blockchain.blocks.forEach(function(block) { %>
-                        <tr>
-                            <td><%= block.index %></td>
-                            <td><%= block.previousHash %></td>
-                            <td><%= block.data %></td>
-                            <td><%= block.timestamp %></td>
-                        </tr>
-                    <% }); %>
-
                 </div>
             </div>
 

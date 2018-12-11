@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <% include ../partials/head.ejs %>
+</head>
+
+<body id="body-loaded">
+        <div class="container">
+                <div class="col-md-12">
+                    <h2 id="ola">Consulte a precedência de algum remédio</h2>
+                </div>
+                <hr>
+        
+                <div id="top" class="row">
+                <div class="col-md-4">
+                    <h3>Insira o ID do remédio</h3>
+                </div>
+
+                <table class="table table-striped" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>Remetente</th>
+                            <th>Destinatário</th>
+                            <th>Medicamento</th>
+                            <th>Data</th>
+                    </thead>
+                    <tbody>
+                        <% caminhoMedicamento.forEach(function(itemCaminho) { %>
+                                <tr>
+                                    <% if (itemCaminho.entidadeRemetente == null || itemCaminho.entidadeRemetente == undefined) { %>
+                                        <td>Criou Remédio</td>
+                                    <% } else{ %>
+                                        <td><%= itemCaminho.entidadeRemetente.nome %></td>
+                                    <% } %>
+
+                                    <% if (itemCaminho.entidadeDestinatario == null || itemCaminho.entidadeDestinatario == undefined) { %>
+                                        <td>TÁ ERRADO</td>
+                                    <% } else{ %>
+                                        <td><%= itemCaminho.entidadeDestinatario.nome %></td>
+                                    <% } %>
+                                    
+                                    <td><%= itemCaminho.medicamento.nome %></td>
+                                    <td><%= itemCaminho.data %></td>
+                                </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+
+                <a href="/"><button type="button" class=" qt btn btn-secundary" >Voltar</button></a>
+            </div>
+        </div>
+    </body>
+</html>

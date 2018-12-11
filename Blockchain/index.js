@@ -19,18 +19,23 @@ module.exports.addBlock = function(blockInfo, callback) {
 }
 
 module.exports.getCaminhoMedicamento = function(medicamentoId, callback) {
-    var blockChainAtual = store.get("blockChainAtual");
-    if(blockChainAtual != null && blockChainAtual != undefined){
-        blockchainInstance.setAllInfo(blockChainAtual.blocks, blockChainAtual.index, blockChainAtual.difficulty); 
-    }
-    
+    console.log("getCaminhoMedicamento");
+
     var caminhoMedicamento = []
 
     for (i = 0; i < blockchainInstance.blocks.length; i++) {
-        if(blockchainInstance.blocks[i].data.medicamento.id == medicamentoId){
-            caminhoMedicamento.push(blockchainInstance.blocks[i].data); // .data = instância de Envio
+        console.log("i: " + i);
+        console.log("blockchainInstance.blocks[i].data: " + blockchainInstance.blocks[i].data);
+        if(blockchainInstance.blocks[i].data.medicamento != null){
+            console.log("blockchainInstance.blocks[i].data.medicamento != null");
+            if(blockchainInstance.blocks[i].data.medicamento.id == medicamentoId){
+                console.log("blockchainInstance.blocks[i].data.medicamento.id == medicamentoId");
+                caminhoMedicamento.push(blockchainInstance.blocks[i].data); // .data = instância de Envio
+            }
         }
     }
+
+    console.log("caminhoMedicamento: " + caminhoMedicamento);
 
     callback(caminhoMedicamento);
 }
